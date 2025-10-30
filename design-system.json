@@ -1,0 +1,70 @@
+{
+    "$schema": "./node_modules/@qiqi1996/design-system/dist/schema-zh.json",
+    "output": {
+        "tailwind-v4": "./src/ui/theme.css"
+    },
+    "color": {
+        "palettes": [{ "type": "ant-design", "name": "brand", "base": "#002FA7", "args": [] }],
+        "semantic": {
+            "primary": {
+                "default": {
+                    "type": "chakra",
+                    "default": "600",
+                    "solid": "brand-600",
+                    "contrast": "100",
+                    "fg": "200",
+                    "muted": "300",
+                    "subtle": "400",
+                    "emphasized": "500"
+                },
+                "dark": {
+                    "type": "chakra",
+                    "default": "600",
+                    "solid": "600",
+                    "contrast": "100",
+                    "fg": "200",
+                    "muted": "300",
+                    "subtle": "400",
+                    "emphasized": "500"
+                }
+            },
+            "border": {
+                "default": { "type": "custom", "default": "#E7E7E7" },
+                "dark": {
+                    "type": "chakra",
+                    "default": "600",
+                    "solid": "600",
+                    "contrast": "100",
+                    "fg": "200",
+                    "muted": "300",
+                    "subtle": "400",
+                    "emphasized": "500"
+                }
+            },
+            "color-footnote": {
+                "default": { "type": "custom", "default": "#9E9E9E" },
+                "dark": {
+                    "type": "chakra",
+                    "default": "600",
+                    "solid": "600",
+                    "contrast": "100",
+                    "fg": "200",
+                    "muted": "300",
+                    "subtle": "400",
+                    "emphasized": "500"
+                }
+            }
+        }
+    },
+    "space": { "base": 8, "unit": "px" },
+    "font": {
+        "size": {
+            "semantic": { "footnote": "12px", "text": "14px", "subtitle": "16px", "title": "24px", "headline": "40px" }
+        },
+        "lineHeight": { "semantic": {}, "auto": { "value": 4, "range": [0, 3] } },
+        "weight": {
+            "semantic": { "footnote": "400", "text": "400", "subtitle": "500", "title": "600", "headline": "800" }
+        },
+        "disableDefault": true
+    }
+}

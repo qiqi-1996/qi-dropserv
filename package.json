@@ -1,0 +1,33 @@
+{
+    "name": "qi-dropserv",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development bun run --watch src/bootstrap.ts",
+        "build:design-system": "qi-design-system"
+    },
+    "devDependencies": {
+        "@qiqi1996/design-system": "^0.0.2",
+        "@types/bun": "latest",
+        "@types/react": "^19.2.2",
+        "@types/react-dom": "^19.2.2",
+        "bun-plugin-tailwind": "^0.1.2",
+        "cross-env": "^10.1.0"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "dependencies": {
+        "@mantine/core": "^8.3.6",
+        "@mantine/hooks": "^8.3.6",
+        "@types/lodash": "^4.17.20",
+        "classnames": "^2.5.1",
+        "lodash": "^4.17.21",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "react-icons": "^5.5.0",
+        "react-router-dom": "^7.9.5",
+        "tailwindcss": "^4.1.16"
+    }
+}
