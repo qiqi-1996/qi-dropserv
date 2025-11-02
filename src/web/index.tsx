@@ -3,11 +3,12 @@ import { createRoot } from "react-dom/client"
 
 import { ColorSchemeScript, createTheme, MantineProvider } from "@mantine/core"
 import "@mantine/core/styles.css"
-import { BrowserRouter, createBrowserRouter, RouterProvider, useRoutes } from "react-router-dom"
+import "@mantine/dropzone/styles.css"
+import { BrowserRouter, createBrowserRouter, useRoutes } from "react-router-dom"
 import { AppMainLayout } from "./components/app-layout/main"
 import "./index.css"
-import { routes } from "./routes"
 import { menus } from "./menus"
+import { routes } from "./routes"
 
 const theme = createTheme({
     colors: {

@@ -1,3 +1,10 @@
+import { AppDropzone } from "@/web/components/app-dropzone"
+import { AppPage } from "@/web/components/app-layout"
+
 export default function () {
-    return <div>/Applications</div>
+    return (
+        <AppPage>
+            <AppDropzone />
+        </AppPage>
+    )
 }

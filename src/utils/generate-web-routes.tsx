@@ -1,11 +1,12 @@
 import path from "path"
 import fs from "fs"
-import { define } from "./define"
+import { defination } from "./defination"
 import { camelCase, toPairs, upperFirst } from "lodash"
 import { formatTs } from "./format"
 
-const dir = path.resolve(define.path.dev.src, "web/views")
-const relate = path.resolve(define.path.dev.src, "web")
+const def = defination()
+const dir = path.resolve(def.path.dev.src, "web/views")
+const relate = path.resolve(def.path.dev.src, "web")
 
 /**
  * 生成 Web 路径
