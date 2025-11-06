@@ -1,6 +1,6 @@
 import webUI from "../web/index.html"
 import { apiSystemRoutes } from "./api/system"
-import { apiUploadRoutes } from "./api/upload"
+import { apiWorkspaceRoutes } from "./api/workspace"
 
 export function startServer() {
     const app = Bun.serve({
@@ -8,7 +8,7 @@ export function startServer() {
         routes: {
             "/*": webUI,
             ...apiSystemRoutes,
-            ...apiUploadRoutes,
+            ...apiWorkspaceRoutes,
         },
         development: process.env.NODE_ENV !== "production" && {
             hmr: true,
