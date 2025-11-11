@@ -1,9 +1,9 @@
-import { AppShell, Divider, NavLink } from "@mantine/core"
-import type { ReactNode } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
-import cs from "classnames"
 import type { RouteKeys } from "@/web/routes"
-import { LuDroplet, LuDroplets, LuServer, LuServerCog, LuServerCrash, LuServerOff } from "react-icons/lu"
+import { AppShell, Divider, NavLink } from "@mantine/core"
+import cs from "classnames"
+import type { ReactNode } from "react"
+import { HiMiniServerStack } from "react-icons/hi2"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export function AppMainLayout(props: { menus?: MenuItem[]; children: ReactNode }) {
     const location = useLocation()
@@ -17,7 +17,7 @@ export function AppMainLayout(props: { menus?: MenuItem[]; children: ReactNode }
             <AppShell.Header className="border-none!">
                 <div className="w-full h-full flex items-center px-2">
                     <div className="flex items-center gap-1">
-                        <LuServer className="text-primary text-title" />
+                        <HiMiniServerStack className="text-primary text-title" />
                         <div className="text-title font-title leading-title-xs">Dropserv</div>
                     </div>
                 </div>

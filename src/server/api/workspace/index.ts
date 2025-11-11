@@ -18,8 +18,12 @@ export const apiWorkspaceRoutes: BunRoutes = {
         if (!workspaceId) return stdErrorResponse("未提供工作空间 ID")
         if (!file || !filepath) return stdErrorResponse("未提供文件和路径")
 
-        const workspace = workspaceController(workspaceId)
-        workspace.write(filepath, file)
+        try {
+            const workspace = workspaceController(workspaceId)
+            workspace.write(filepath, file)
+        } catch (e) {
+            return stdErrorResponse(String(e))
+        }
 
         return stdResponse()
     },
