@@ -1,11 +1,11 @@
-import { workspaceController } from "@/abilities/workspace"
-import type { Workspace } from "@/abilities/workspace/types"
+import { workspaceController } from "@/services/workspace"
+import type { DropservWorkspaceState } from "@/services/workspace/types"
 import { stdErrorResponse, stdResponse, stdStatusMethodNotAllowed } from "@/server/utils/response"
 import type { BunRoutes } from "../type"
 
 export const apiWorkspaceRoutes: BunRoutes = {
     "/api/workspace/create": async () => {
-        return stdResponse(workspaceController() satisfies Workspace)
+        return stdResponse(workspaceController() satisfies DropservWorkspaceState)
     },
     "/api/workspace/upload": async (req) => {
         const form = await req.formData()

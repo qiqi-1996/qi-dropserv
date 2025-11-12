@@ -25,6 +25,15 @@ const theme = createTheme({
             "#002fa7",
         ],
     },
+    components: {
+        "Input.Wrapper": {
+            styles: {
+                label: {
+                    maginBottom: "16px",
+                },
+            },
+        },
+    },
     primaryColor: "brand",
     respectReducedMotion: true,
     defaultRadius: "lg",

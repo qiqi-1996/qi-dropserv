@@ -1,4 +1,4 @@
-import type { ProjectDescription } from "@/abilities/helper/project-description"
+import type { ProjectDescription } from "@/services/helper/project-description"
 
 export type DropservEndpoint = {
     name: string

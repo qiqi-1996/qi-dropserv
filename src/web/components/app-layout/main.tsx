@@ -15,10 +15,10 @@ export function AppMainLayout(props: { menus?: MenuItem[]; children: ReactNode }
             navbar={{ width: 300, breakpoint: "xs" }}
         >
             <AppShell.Header className="border-none!">
-                <div className="w-full h-full flex items-center px-2">
+                <div className="flex h-full w-full items-center px-2">
                     <div className="flex items-center gap-1">
-                        <HiMiniServerStack className="text-primary text-title" />
-                        <div className="text-title font-title leading-title-xs">Dropserv</div>
+                        <HiMiniServerStack className="text-title text-primary" />
+                        <div className="text-title leading-title-xs font-title">Qi Dropserv</div>
                     </div>
                 </div>
             </AppShell.Header>
@@ -40,7 +40,7 @@ function AppMenu(props: { currentPathname: string; menus: MenuItem[] }) {
             <Divider key={index} className="my-1" label={menu.label} />
         ) : (
             <NavLink
-                className={cs("rounded-xl", isActive(menu) && "shadow-primary/10 shadow-lg")}
+                className={cs("rounded-xl", isActive(menu) && "shadow-lg shadow-primary/10")}
                 variant="filled"
                 key={menu.route || index}
                 label={menu.label}

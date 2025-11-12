@@ -3,6 +3,12 @@ export const stdCode = {
     error: 1,
 } as const
 
+export type StdResponse<T = any> = {
+    code: number
+    message: string
+    data: any
+}
+
 export function stdResponse(
     data: any = null,
     message: string = "success",
