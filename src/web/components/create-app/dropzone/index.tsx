@@ -153,7 +153,7 @@ export function CreateAppDropzone(props: CreateAppDropzoneProps) {
                         {uploadQueueStatus() === "pending" ? (
                             <>
                                 <LuPlus className="text-subtitle" />
-                                <span>拖入项目/新建应用</span>
+                                <span>拖入项目至此，快速新建应用</span>
                             </>
                         ) : uploadQueueStatus() === "uploading" ? (
                             <>

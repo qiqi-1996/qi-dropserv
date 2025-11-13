@@ -4,6 +4,19 @@ import { debounce } from "lodash"
 import path from "path"
 import type { DropservWorkspace } from "./types"
 
+/**
+ * 列出所有工作空间路径
+ * 
+ * ---
+ * List all workspace paths
+ */
+export async function listWorkspaces() {
+    const def = defination()
+    const workspaceRootDir = def.path.prod.workspace
+    const paths = (await fs.readdir(workspaceRootDir)).map((workspaceId) => path.resolve(workspaceRootDir, workspaceId))
+    return paths
+}
+
 export function workspaceController(workspaceId?: string): DropservWorkspace {
     const id = workspaceId ?? Bun.randomUUIDv7()
     const def = defination()

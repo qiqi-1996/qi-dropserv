@@ -4,6 +4,7 @@ import cs from "classnames"
 import type { ReactNode } from "react"
 import { HiMiniServerStack } from "react-icons/hi2"
 import { useLocation, useNavigate } from "react-router-dom"
+import { CreateAppEntry } from "../create-app"
 
 export function AppMainLayout(props: { menus?: MenuItem[]; children: ReactNode }) {
     const location = useLocation()
@@ -15,11 +16,13 @@ export function AppMainLayout(props: { menus?: MenuItem[]; children: ReactNode }
             navbar={{ width: 300, breakpoint: "xs" }}
         >
             <AppShell.Header className="border-none!">
-                <div className="flex h-full w-full items-center px-2">
+                <div className="flex h-full w-full items-center justify-between px-2">
                     <div className="flex items-center gap-1">
                         <HiMiniServerStack className="text-title text-primary" />
                         <div className="text-title leading-title-xs font-title">Qi Dropserv</div>
                     </div>
+                    <CreateAppEntry dropzone={{ minimize: true }} />
+                    <div></div>
                 </div>
             </AppShell.Header>
             <AppShell.Navbar className="border-none! px-2">

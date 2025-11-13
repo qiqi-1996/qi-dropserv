@@ -1,4 +1,5 @@
 import webUI from "../web/index.html"
+import { apiApplicationRoutes } from "./api/application"
 import { apiSystemRoutes } from "./api/system"
 import { apiWorkspaceRoutes } from "./api/workspace"
 
@@ -9,6 +10,7 @@ export function startServer() {
             "/*": webUI,
             ...apiSystemRoutes,
             ...apiWorkspaceRoutes,
+            ...apiApplicationRoutes,
         },
         development: process.env.NODE_ENV !== "production" && {
             hmr: true,
