@@ -6,27 +6,27 @@ import type { DropservWorkspace } from "./types"
 
 /**
  * 列出所有工作空间路径
- * 
+ *
  * ---
  * List all workspace paths
  */
 export async function listWorkspaces() {
     const def = defination()
     const workspaceRootDir = def.path.prod.workspace
-    const paths = (await fs.readdir(workspaceRootDir)).map((workspaceId) => path.resolve(workspaceRootDir, workspaceId))
-    return paths
+    const workspaces = (await fs.readdir(workspaceRootDir)).map((workspaceId) => workspaceController(workspaceId))
+    return workspaces
 }
 
 export function workspaceController(workspaceId?: string): DropservWorkspace {
     const id = workspaceId ?? Bun.randomUUIDv7()
     const def = defination()
-    const basedir = path.resolve(def.path.prod.workspace, id)
+    const workingDir = path.resolve(def.path.prod.workspace, id)
 
     let files: string[] = []
 
     const filesSnapshot: DropservWorkspace["filesSnapshot"] = async () => {
-        const result = (await fs.readdir(basedir, { recursive: true })).map((filename) =>
-            path.resolve(basedir, filename),
+        const result = (await fs.readdir(workingDir, { recursive: true })).map((filename) =>
+            path.resolve(workingDir, filename),
         )
         files.splice(0, files.length, ...result)
         return result
@@ -42,7 +42,7 @@ export function workspaceController(workspaceId?: string): DropservWorkspace {
                   ? filepath.replace("../", "")
                   : filepath
         filepath = filepath.slice(filepath.indexOf("/") + 1)
-        await Bun.write(path.resolve(basedir, filepath), file)
+        await Bun.write(path.resolve(workingDir, filepath), file)
         debouncedUpdateFiles()
         return
     }
@@ -51,6 +51,7 @@ export function workspaceController(workspaceId?: string): DropservWorkspace {
         id,
         files,
 
+        workingDir,
         filesSnapshot,
         write,
     }

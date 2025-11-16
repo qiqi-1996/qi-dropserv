@@ -5,6 +5,13 @@ export type DropservWorkspace = DropservWorkspaceState & DropservWorkspaceAction
 export type DropservWorkspaceState = {
     id: string
     /**
+     * 工作目录
+     *
+     * ---
+     * Working Dir
+     */
+    workingDir: string
+    /**
      * 文件列表（快照）\
      * File list (snapshot)
      */

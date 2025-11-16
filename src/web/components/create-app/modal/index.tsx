@@ -6,7 +6,12 @@ import { useDisclosure, type UseDisclosureReturnValue } from "@mantine/hooks"
 import { useAsyncEffect } from "ahooks"
 import { useState, type ReactNode } from "react"
 
-export function CreateAppModal(props: { ctrl?: UseDisclosureReturnValue; workspaceId?: string; children?: ReactNode }) {
+export function CreateAppModal(props: {
+    ctrl?: UseDisclosureReturnValue
+    workspaceId?: string
+    handleCreated?: (app: DropservApplicationState) => void
+    children?: ReactNode
+}) {
     const innerCtrl = useDisclosure()
     const [opened, { open, close }] = props.ctrl ?? innerCtrl
 
@@ -28,8 +33,9 @@ export function CreateAppModal(props: { ctrl?: UseDisclosureReturnValue; workspa
     }
 
     const handleDeploy = async () => {
-        api.post("/api/application/create", payload).then(() => {
+        api.post<DropservApplicationState>("/api/application/create", payload).then((app) => {
             close()
+            props.handleCreated?.(app.data)
         })
     }
 

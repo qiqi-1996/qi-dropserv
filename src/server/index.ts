@@ -5,6 +5,7 @@ import { apiWorkspaceRoutes } from "./api/workspace"
 
 export function startServer() {
     const app = Bun.serve({
+        hostname: "127.0.0.1",
         port: 3000,
         routes: {
             "/*": webUI,

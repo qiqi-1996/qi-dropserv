@@ -7,6 +7,7 @@
         "@mantine/core": "^8.3.6",
         "@mantine/dropzone": "^8.3.6",
         "@mantine/hooks": "^8.3.6",
+        "@mantine/modals": "^8.3.8",
         "@types/lodash": "^4.17.20",
         "ahooks": "^3.9.6",
         "axios": "^1.13.1",
@@ -17,6 +18,7 @@
         "react-dom": "^19.2.0",
         "react-icons": "^5.5.0",
         "react-router-dom": "^7.9.5",
+        "swr": "^2.3.6",
         "tailwindcss": "^4.1.16",
         "ts-essentials": "^10.1.1",
       },
@@ -122,6 +124,8 @@
     "@mantine/dropzone": ["@mantine/dropzone@8.3.6", "", { "dependencies": { "react-dropzone": "14.3.8" }, "peerDependencies": { "@mantine/core": "8.3.6", "@mantine/hooks": "8.3.6", "react": "^18.x || ^19.x", "react-dom": "^18.x || ^19.x" } }, "sha512-zgHEoO4z4hjDMMuVapwGoMahkp3lZvaht1bYc0e1hUMVN3FQNRWBrmczL9a3CG21a1cbUdwr8cbHIxOBFVAR+Q=="],
 
     "@mantine/hooks": ["@mantine/hooks@8.3.6", "", { "peerDependencies": { "react": "^18.x || ^19.x" } }, "sha512-liHfaWXHAkLjJy+Bkr29UsCwAoDQ/a64WrM67lksx8F0qqyjR5RQH8zVlhuOjdpQnwtlUkE/YiTvbJiPcoI0bw=="],
+
+    "@mantine/modals": ["@mantine/modals@8.3.8", "", { "peerDependencies": { "@mantine/core": "8.3.8", "@mantine/hooks": "8.3.8", "react": "^18.x || ^19.x", "react-dom": "^18.x || ^19.x" } }, "sha512-hcYXchS1Zrdwz5xRnEsFTPv6o/kNQbl/Ey0LBXvZCMn//2aq70IHTlEbtUUM2FMQNz3i/wzcpOqvhUU9mGZVJw=="],
 
     "@oven/bun-darwin-aarch64": ["@oven/bun-darwin-aarch64@1.3.1", "", { "os": "darwin", "cpu": "arm64" }, "sha512-7Rap1BHNWqgnexc4wLjjdZeVRQKtk534iGuJ7qZ42i/q1B+cxJZ6zSnrFsYmo+zreH7dUyUXL3AHuXGrl2772Q=="],
 
@@ -582,6 +586,8 @@
     "source-map-js": ["source-map-js@1.2.1", "", {}, "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="],
 
     "string-to-arraybuffer": ["string-to-arraybuffer@1.0.2", "", { "dependencies": { "atob-lite": "^2.0.0", "is-base64": "^0.1.0" } }, "sha512-DaGZidzi93dwjQen5I2osxR9ERS/R7B1PFyufNMnzhj+fmlDQAc1DSDIJVJhgI8Oq221efIMbABUBdPHDRt43Q=="],
+
+    "swr": ["swr@2.3.6", "", { "dependencies": { "dequal": "^2.0.3", "use-sync-external-store": "^1.4.0" }, "peerDependencies": { "react": "^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-wfHRmHWk/isGNMwlLGlZX5Gzz/uTgo0o2IRuTMcf4CPuPFJZlq0rDaKUx+ozB5nBOReNV1kiOyzMfj+MBMikLw=="],
 
     "tabbable": ["tabbable@6.3.0", "", {}, "sha512-EIHvdY5bPLuWForiR/AN2Bxngzpuwn1is4asboytXtpTgsArc+WmSJKVLlhdh71u7jFcryDqB2A8lQvj78MkyQ=="],
 

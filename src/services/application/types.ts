@@ -55,4 +55,11 @@ export type DropservApplicationActions = {
      * @description It is possible that after the user uploads the file, the application is not configured, resulting in the existence of the workspace directory, but there is no application configuration.
      */
     exists: () => Promise<boolean>
+    /**
+     * 删除应用目录
+     * 
+     * ---
+     * Delete the application directory
+     */
+    delete: () => Promise<void>
 }

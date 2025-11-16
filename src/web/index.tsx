@@ -9,6 +9,10 @@ import { AppMainLayout } from "./components/app-layout/main"
 import "./index.css"
 import { menus } from "./menus"
 import { routes } from "./routes"
+import { SWRConfig } from "swr"
+import { api } from "./utils/request"
+import type { AxiosRequestConfig, Method } from "axios"
+import { ModalsProvider } from "@mantine/modals"
 
 const theme = createTheme({
     colors: {
@@ -50,11 +54,24 @@ function App() {
         <StrictMode>
             <ColorSchemeScript defaultColorScheme="auto" />
             <MantineProvider theme={theme} defaultColorScheme="auto">
-                <BrowserRouter>
-                    <AppMainLayout menus={m}>
-                        <Page />
-                    </AppMainLayout>
-                </BrowserRouter>
+                <ModalsProvider
+                    labels={{
+                        cancel: "取消",
+                        confirm: "确认",
+                    }}
+                >
+                    <SWRConfig
+                        value={{
+                            fetcher: api.swr,
+                        }}
+                    >
+                        <BrowserRouter>
+                            <AppMainLayout menus={m}>
+                                <Page />
+                            </AppMainLayout>
+                        </BrowserRouter>
+                    </SWRConfig>
+                </ModalsProvider>
             </MantineProvider>
         </StrictMode>
     )

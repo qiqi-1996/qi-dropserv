@@ -2,8 +2,12 @@ import { useDisclosure } from "@mantine/hooks"
 import { CreateAppDropzone, type CreateAppDropzoneProps } from "./dropzone"
 import { CreateAppModal } from "./modal"
 import { useState } from "react"
+import type { DropservApplicationState } from "@/services/application/types"
 
-export function CreateAppEntry(props: { dropzone?: CreateAppDropzoneProps }) {
+export function CreateAppEntry(props: {
+    dropzone?: CreateAppDropzoneProps
+    handleApplicationCreated?: (app: DropservApplicationState) => void
+}) {
     const [workspaceId, setWorkspaceId] = useState<string | undefined>()
     const modalCtrl = useDisclosure()
     const [_, modelApi] = modalCtrl
@@ -18,7 +22,7 @@ export function CreateAppEntry(props: { dropzone?: CreateAppDropzoneProps }) {
                     modelApi.open()
                 }}
             />
-            <CreateAppModal ctrl={modalCtrl} workspaceId={workspaceId} />
+            <CreateAppModal ctrl={modalCtrl} workspaceId={workspaceId} handleCreated={props.handleApplicationCreated} />
         </div>
     )
 }

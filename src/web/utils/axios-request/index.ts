@@ -1,4 +1,4 @@
-import { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from "axios"
+import { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse, type Method } from "axios"
 import qs from "qs"
 import type { CompositeAxiosInterceptor } from "./interceptors"
 
@@ -24,7 +24,10 @@ export function wrapAxiosRequest<
         ? (DataKey extends "" ? T : SetDeepType<{}, DataKey, T>) & ExtendData
         : AxiosResponse<(DataKey extends "" ? T : SetDeepType<{}, DataKey, T>) & ExtendData>
 
+    const canPayload = (method: Method) => ["GET", "DELETE", "HEAD", "OPTIONS"].includes(method.toUpperCase())
+
     const request = <T = any>(config: AxiosRequestConfig) => axios.request(config) as Promise<Response<T>>
+    const url = urlParams
 
     const get = <T = any>(url: string, params?: any, config?: AxiosRequestConfig) =>
         axios(url, { ...config, method: "GET", params: params }) as Promise<Response<T>>
@@ -32,14 +35,14 @@ export function wrapAxiosRequest<
     const post = <T = any>(url: string, payload?: any, config?: AxiosRequestConfig) =>
         axios(url, { ...config, method: "POST", data: payload }) as Promise<Response<T>>
 
-    const deletes = <T = any>(url: string, payload?: any, config?: AxiosRequestConfig) =>
-        axios(url, { ...config, method: "DELETES", data: payload }) as Promise<Response<T>>
+    const deletes = <T = any>(url: string, params?: any, config?: AxiosRequestConfig) =>
+        axios(url, { ...config, method: "DELETE", params: params }) as Promise<Response<T>>
 
-    const head = <T = any>(url: string, payload?: any, config?: AxiosRequestConfig) =>
-        axios(url, { ...config, method: "HEAD", data: payload }) as Promise<Response<T>>
+    const head = <T = any>(url: string, params?: any, config?: AxiosRequestConfig) =>
+        axios(url, { ...config, method: "HEAD", params: params }) as Promise<Response<T>>
 
-    const options = <T = any>(url: string, payload?: any, config?: AxiosRequestConfig) =>
-        axios(url, { ...config, method: "OPTIONS", data: payload }) as Promise<Response<T>>
+    const options = <T = any>(url: string, params?: any, config?: AxiosRequestConfig) =>
+        axios(url, { ...config, method: "OPTIONS", params: params }) as Promise<Response<T>>
 
     const put = <T = any>(url: string, payload?: any, config?: AxiosRequestConfig) =>
         axios(url, { ...config, method: "PUT", data: payload }) as Promise<Response<T>>
@@ -47,16 +50,26 @@ export function wrapAxiosRequest<
     const patch = <T = any>(url: string, payload?: any, config?: AxiosRequestConfig) =>
         axios(url, { ...config, method: "PATCH", data: payload }) as Promise<Response<T>>
 
+    const swr = <T = any>(method: Method, url: string, payload?: any, config?: AxiosRequestConfig) =>
+        axios(url, {
+            ...config,
+            method,
+            data: canPayload(method) ? payload : undefined,
+            params: canPayload(method) ? undefined : payload,
+        }) as Promise<Response<T>>
+
     return {
         axios,
         request,
+        url,
         get,
         post,
-        deletes,
+        delete: deletes,
         head,
         options,
         put,
         patch,
+        swr,
     }
 }
 
