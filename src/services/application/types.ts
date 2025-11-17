@@ -1,4 +1,9 @@
-import type { DropservEndpoint } from "../endpoint/common"
+import type {
+    DropservEndpointController,
+    DropservEndpointControllerActions,
+    DropservEndpointControllerState,
+} from "../endpoint"
+import type { DropservWorkspace, DropservWorkspaceActions, DropservWorkspaceState } from "../workspace/types"
 
 export type DropservApplication = DropservApplicationState & DropservApplicationActions
 
@@ -27,7 +32,9 @@ export type DropservApplicationState = {
      * ---
      * List of Endpoint services and configurations used by the application
      */
-    endpoints: DropservEndpoint[]
+    endpoints: { id: string; options: any }[]
+
+    workspace: DropservWorkspaceState
 }
 
 export type DropservApplicationActions = {
@@ -57,9 +64,11 @@ export type DropservApplicationActions = {
     exists: () => Promise<boolean>
     /**
      * 删除应用目录
-     * 
+     *
      * ---
      * Delete the application directory
      */
     delete: () => Promise<void>
+
+    workspace: DropservWorkspaceActions
 }

@@ -1,5 +1,5 @@
 import { defination } from "@/utils/defination"
-import type { DropservApplication, DropservApplicationState } from "./types"
+import type { DropservApplication, DropservApplicationActions, DropservApplicationState } from "./types"
 import path from "path"
 import { assign, isNil, negate } from "lodash"
 import { listWorkspaces, workspaceController } from "../workspace"
@@ -16,6 +16,7 @@ export function applicationController(workspaceId: string): DropservApplication 
         id: workspaceId,
         name: "",
         endpoints: [],
+        workspace: workspaceController(workspaceId),
     }
 
     const save: DropservApplication["load"] = async () => {
@@ -32,11 +33,13 @@ export function applicationController(workspaceId: string): DropservApplication 
         })
     }
 
-    const actions = {
+    const actions: DropservApplicationActions = {
         save,
         load,
         exists,
         delete: deletes,
+        apply: () => {},
+        workspace: workspaceController(workspaceId),
     }
 
     function apply(newState: DropservApplicationState) {

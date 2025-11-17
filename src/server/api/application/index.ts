@@ -2,7 +2,9 @@ import { stdErrorResponse, stdResponse, stdStatusMethodNotAllowed } from "@/serv
 import { applicationController, listApplications } from "@/services/application"
 import type { DropservApplicationState } from "@/services/application/types"
 import type { BunRoutes } from "../type"
-import type { MarkRequired } from "ts-essentials"
+import type { ApiApplicationListResult } from "./types"
+import { allEndpoints } from "@/services/endpoint"
+import { isNil, negate } from "lodash"
 
 export const apiApplicationRoutes: BunRoutes = {
     "/api/application/create": async (req) => {
@@ -29,7 +31,39 @@ export const apiApplicationRoutes: BunRoutes = {
         }
     },
     "/api/application/list": async (req) => {
+        type EndpointItem = ApiApplicationListResult[number]["endpointControllers"][number]
+
         const apps = await listApplications()
-        return stdResponse(apps)
+        const endpoints = await allEndpoints()
+        const result: ApiApplicationListResult = await Promise.all(
+            apps.map(async (app) => {
+                const endpointControllers = (
+                    await Promise.all(
+                        app.endpoints.map(async (item) => {
+                            const ep = endpoints.find((ep) => item.id === ep.id)
+                            if (ep) {
+                                const epctrl = ep.endpoint({
+                                    workspace: app.workspace,
+                                })
+                                return {
+                                    id: ep.id,
+                                    status: await epctrl.status(),
+                                    statusMessage: await epctrl.statusMessage(),
+                                    urls: await epctrl.urls(),
+                                } as EndpointItem
+                            } else {
+                                return undefined
+                            }
+                        }),
+                    )
+                ).filter(negate(isNil)) as EndpointItem[]
+
+                return {
+                    ...app,
+                    endpointControllers,
+                }
+            }),
+        )
+        return stdResponse(result)
     },
 }
